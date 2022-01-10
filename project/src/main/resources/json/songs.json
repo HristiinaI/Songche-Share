@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Buttons",
+    "singer": "The Pussycats dolls",
+    "playCount": "50",
+    "genre": "Pop"
+  },
+  {
+    "name": "On the floor",
+    "singer": "Jennifer Lopez",
+    "playCount": "30",
+    "genre": "Pop"
+  },
+  {
+    "name": "Pon de Replay",
+    "singer": "Rihanna",
+    "playCount": "20",
+    "genre": "Pop"
+  },
+  {
+    "name": "Paradise City",
+    "singer": "GunsNRoses",
+    "playCount": "5",
+    "genre": "Rock"
+  },
+  {
+    "name": "Another One Bites The Dust",
+    "singer": "Queen",
+    "playCount": "60",
+    "genre": "<ReferenceError: genre is not defined>"
+  },
+  {
+    "name": "Should I Stay or should I go",
+    "singer": "The Clash",
+    "playCount": "10",
+    "genre": "Rock"
+  },
+  {
+    "name": "Killshot",
+    "singer": "Eminem",
+    "playCount": "30",
+    "genre": "Rap"
+  },
+  {
+    "name": "Venom",
+    "singer": "Eminem",
+    "playCount": "20",
+    "genre": "Rap"
+  },
+  {
+    "name": "Sen Trope",
+    "singer": "Azis",
+    "playCount": "100",
+    "genre": "PopFolk"
+  }
+]
