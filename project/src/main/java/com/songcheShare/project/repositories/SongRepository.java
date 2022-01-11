@@ -6,4 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 // can generate SQl queries without write SQL - with keywords or JPQl
 public interface SongRepository extends JpaRepository<Song, Long> {
     Song findSongByName(String name);
+    Song findSongBySinger(String singer);
+    Song findSongByGenre(String genre);
+
 }

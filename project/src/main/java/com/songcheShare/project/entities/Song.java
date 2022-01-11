@@ -75,4 +75,14 @@ public class Song {
         this.genre = genre;
     }
 
+    @Override
+    public String toString() {
+        return "Song{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", singer='" + singer + '\'' +
+                ", playCount=" + playCount +
+                ", genre=" + genre +
+                '}';
+    }
 }

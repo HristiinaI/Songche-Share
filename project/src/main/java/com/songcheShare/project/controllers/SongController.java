@@ -5,12 +5,14 @@ package com.songcheShare.project.controllers;
 import com.songcheShare.project.entities.Song;
 import com.songcheShare.project.repositories.SongRepository;
 import com.songcheShare.project.services.SongService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 //from where queries will come
@@ -36,9 +38,32 @@ public class SongController {
         return songService.list();
     }
 
-    @GetMapping("/find")
-    public Song findSong(String name){
-        return songRepo.findSongByName(name);
+    //findByName?name=Buttons
+    @GetMapping("/findByName")
+    public String findSongByName(String name){
+      Optional<Song> song = Optional.ofNullable(songRepo.findSongByName(name));
+      if(song.isEmpty()){
+          return "No song found!";
+      }
+      return song.get().toString();
+    }
+    //findBySinger?singer=Jennifer#Lopez
+    @GetMapping("/findBySinger")
+    public String findSongBySinger(String singer){
+        Optional<Song> song = Optional.ofNullable(songRepo.findSongBySinger(singer));
+        if(song.isEmpty()){
+            return "No song found!";
+        }
+        return song.get().toString();
+    }
+    //findByGenre?genre=PopFolk
+    @GetMapping("/findByGenre")
+    public String findSongByGenre(String genre){
+        Optional<Song> song = Optional.ofNullable(songRepo.findSongByGenre(genre));
+        if(song.isEmpty()){
+            return "No song found!";
+        }
+        return song.get().toString();
     }
 
 
