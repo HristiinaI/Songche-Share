@@ -1,9 +1,12 @@
 package com.songcheShare.project.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 
 import javax.persistence.*;
 import lombok.Data;
+
+import java.util.Set;
 
 
 @Data
@@ -13,6 +16,7 @@ import lombok.Data;
 public class Song {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
 
     private enum Genre {
@@ -24,9 +28,21 @@ public class Song {
 
     @Column(name = "name")
     private String name;
+
+    @Column()
     private String singer;
+
+    @Column()
     private Integer playCount;
+
+    @Column()
     private Genre genre;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "song")
+    private Set<WeekSong> weekSongs;
+
+
 
     // hibernate will not work without empty constructor, because we have one constructor
     public Song() {
@@ -73,6 +89,14 @@ public class Song {
 
     public void setGenre(Genre genre) {
         this.genre = genre;
+    }
+
+    public Set<WeekSong> getWeekSongs() {
+        return weekSongs;
+    }
+
+    public void setWeekSongs(Set<WeekSong> weekSongs) {
+        this.weekSongs = weekSongs;
     }
 
     @Override
