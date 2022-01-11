@@ -9,7 +9,9 @@ import com.songcheShare.project.repositories.WeekSongRepository;
 import com.songcheShare.project.services.SongService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @RestController
@@ -71,15 +73,21 @@ public class SongController {
         return weekSongRepo.findAll();
     }
 
-    @PostMapping("/addWeekSong")
-    public WeekSong addWeekSong(Integer weekNumber, Song song){
-        WeekSong weekSong = weekSongRepo.findWeekBySong(song)
-                .orElse(new WeekSong(weekNumber, song));
-        if(weekSong.getId() != null){
-            weekSong.setWeek(weekNumber);
+    @DeleteMapping("/delete")
+    public String deleteWeekSong(Integer week){
+        List<WeekSong> result = weekSongRepo.findWeekByWeek(week);
+        if(result.isEmpty())
+            return "WeekSong not found!";
+        for(WeekSong weekSong: result) {
+            weekSongRepo.delete(weekSong);
         }
-        return weekSongRepo.save(weekSong);
+        return week + " was deleted.";
     }
+
+//    @GetMapping("/filter")
+//    public List<Song> filterSongs(String name){
+//        return songRepo.filterSongs(name.toLowerCase());
+//    }
 
 
 

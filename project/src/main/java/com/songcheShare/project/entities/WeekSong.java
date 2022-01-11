@@ -15,13 +15,18 @@ public class WeekSong {
     @JoinColumn(name = "song_id")
     private Song song;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public WeekSong(){
 
     }
 
-    public WeekSong(Integer week, Song song){
+    public WeekSong(Integer week, Song song, User user){
         this.week = week;
         this.song = song;
+        this.user = user;
     }
 
     public Long getId() {
@@ -42,5 +47,13 @@ public class WeekSong {
 
     public void setSong(Song song) {
         this.song = song;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

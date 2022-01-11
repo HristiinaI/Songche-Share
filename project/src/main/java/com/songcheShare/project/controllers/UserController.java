@@ -1,13 +1,17 @@
 package com.songcheShare.project.controllers;
 
 import com.songcheShare.project.dtos.UserDto;
+import com.songcheShare.project.entities.Song;
 import com.songcheShare.project.entities.User;
+import com.songcheShare.project.entities.WeekSong;
+import com.songcheShare.project.repositories.WeekSongRepository;
 import com.songcheShare.project.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,6 +20,12 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    private  final WeekSongRepository weekSongRepo;
+
+    public UserController(WeekSongRepository weekSongRepo) {
+        this.weekSongRepo = weekSongRepo;
+    }
 
     @GetMapping("/list")
     public List<User> getAllUsers() {
@@ -76,5 +86,19 @@ public class UserController {
         return new ResponseEntity<>
                 ("Profile does not exist for id: " + id.toString(),
                         HttpStatus.BAD_REQUEST);
+    }
+    @PostMapping("/addWeekSong")
+    public List<WeekSong> addWeekSong(Integer weekNumber, Song song, User user){
+        List<WeekSong> weekSongs = weekSongRepo.findWeekBySong(song);
+        List<WeekSong> respone = new ArrayList<>();
+
+        if(weekSongs.isEmpty())
+            respone.add(weekSongRepo.save(new WeekSong(weekNumber, song, user)));
+
+        for(WeekSong weekSong: weekSongs){
+            weekSong.setWeek(weekNumber);
+            respone.add(weekSongRepo.save(weekSong));
+        }
+        return respone;
     }
 }

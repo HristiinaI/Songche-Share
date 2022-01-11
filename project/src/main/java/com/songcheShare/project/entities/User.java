@@ -1,12 +1,14 @@
 package com.songcheShare.project.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +28,8 @@ public class User {
 
     @Column(name = "username", nullable = false, length = 30)
     private String username;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<WeekSong> weekSongs;
 }
