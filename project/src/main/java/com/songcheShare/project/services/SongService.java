@@ -9,19 +9,21 @@ import java.util.List;
 @Service
 public class SongService {
 
-    private SongRepository songRepo;
+    private SongRepository songRepository;
 
-    public SongService(SongRepository songRepo){
-        this.songRepo = songRepo;
+    public SongService(SongRepository songRepository) {
+        this.songRepository = songRepository;
     }
 
-    public Iterable<Song> list(){
-        return songRepo.findAll();
+    public Iterable<Song> list() {
+        return songRepository.findAll();
     }
 
-    public Song save(Song song){
-        return songRepo.save(song);
+    public Song save(Song song) {
+        return songRepository.save(song);
     }
 
-
+    public Iterable<Song> save(List<Song> songs) {
+        return songRepository.saveAll(songs);
+    }
 }

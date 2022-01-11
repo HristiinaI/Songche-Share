@@ -1,7 +1,13 @@
 package com.songcheShare.project.entities;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
 
+import javax.persistence.*;
+import lombok.Data;
+
+
+@Data
+@AllArgsConstructor
 @Entity
 @Table(name = "song")
 public class Song {

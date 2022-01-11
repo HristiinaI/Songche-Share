@@ -21,7 +21,7 @@ public class SongController {
 
     //"final", because after first value add to variable will not be change
     private final SongRepository songRepo;
-    private final SongService songService;
+    private SongService songService;
 
 
     //in spring app we don't need "new" instance of class
