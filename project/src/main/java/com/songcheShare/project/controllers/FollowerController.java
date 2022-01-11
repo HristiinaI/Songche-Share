@@ -9,12 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// TODO: Make it work by usernames, not ids
-
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/followers")
-public class FollowersController {
+public class FollowerController {
 
     @Autowired
     private FollowerService followerService;
@@ -29,7 +27,6 @@ public class FollowersController {
         return followerService.listFollowing(id);
     }
 
-    // TODO: Put all the validations inside the service
     @PostMapping("/follow")
     public ResponseEntity<String> followUser(@RequestBody FollowerDto followerDto) {
         if (!followerService.validateInfo(followerDto)) {

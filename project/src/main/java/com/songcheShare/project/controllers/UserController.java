@@ -8,12 +8,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/users")
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @GetMapping("/list")
+    public List<User> getAllUsers() {
+        return userService.list();
+    }
+
+    @GetMapping("/profile")
+    public User getUser(String username) {
+        return userService.findByUsername(username);
+    }
 
     @GetMapping("/login")
     public ResponseEntity<String> login(@RequestParam("email") String email,
